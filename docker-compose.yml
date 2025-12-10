@@ -1,0 +1,24 @@
+services:
+
+  bankease-mysql:
+    image: mysql:8.0
+    container_name: bankease-mysql
+    environment:
+      MYSQL_DATABASE: bankease
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - bankease-data:/var/lib/mysql
+
+  bankease:
+    build: .
+    container_name: bankease
+    depends_on:
+      - bankease-mysql
+    ports:
+      - "8080:8080"
+      - "4949:4848"
+
+volumes:
+  bankease-data:

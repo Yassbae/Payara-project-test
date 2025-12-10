@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Dashboard - BankEase</title>
+    <h:outputStylesheet library="css" name="bankease.css"/>
+</h:head>
+
+<h:body class="be-body">
+
+    <div class="be-navbar">
+        <div class="be-navbar-title">BankEase</div>
+
+        <div class="be-navbar-right">
+            Bonjour, #{loginBean.loggedClient.firstName}
+            <h:form style="display:inline">
+                <p:commandLink value="Déconnexion" action="#{loginBean.logout}"/>
+            </h:form>
+        </div>
+    </div>
+
+    <div class="be-dashboard">
+        <div class="be-dashboard-content">
+
+            <h2>Vos comptes</h2>
+
+            <h:link value="View Transaction History"
+                    outcome="transactionHistory"
+                    styleClass="bankease-btn"/>
+
+
+            <ui:repeat value="#{accountViewBean.accounts}" var="acc">
+
+                <p:card style="margin-bottom:20px">
+
+                    <h3>Compte : #{acc['accountNumber']}</h3>
+                    <p>Type : #{acc['type']}</p>
+                    <p>Solde : #{acc['balance']} CHF</p>
+
+                    <div class="be-actions">
+
+                        <!-- DÉPÔT -->
+                        <h:link outcome="deposit" value="Dépôt" styleClass="be-button-small">
+                            <f:param name="acc" value="#{acc['accountNumber']}"/>
+                        </h:link>
+
+                        <!-- VIREMENT -->
+                        <h:link outcome="transfer" value="Virement" styleClass="be-button-secondary">
+                            <f:param name="src" value="#{acc['accountNumber']}"/>
+                        </h:link>
+
+
+                    </div>
+
+                </p:card>
+
+            </ui:repeat>
+
+            <h:link outcome="createAccount" value="Ouvrir un nouveau compte" style="margin-top:20px;"/>
+
+        </div>
+    </div>
+
+</h:body>
+</html>

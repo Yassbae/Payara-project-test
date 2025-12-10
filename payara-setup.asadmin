@@ -1,0 +1,9 @@
+create-jdbc-connection-pool \
+  --restype javax.sql.DataSource \
+  --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource \
+  --property user=root:password=root:DatabaseName=bankease:serverName=bankease-mysql:portNumber=3306 \
+  bankeasePool
+
+create-jdbc-resource \
+  --connectionpoolid bankeasePool \
+  jdbc/bankeasePool
