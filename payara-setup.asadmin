@@ -1,9 +1,19 @@
+set AS_ADMIN_PASSWORD=
+
+delete-jdbc-resource jdbc/bankeasePool
+delete-jdbc-connection-pool bankeasePool
+
 create-jdbc-connection-pool \
-  --restype javax.sql.DataSource \
-  --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource \
-  --property user=root:password=root:DatabaseName=bankease:serverName=bankease-mysql:portNumber=3306 \
-  bankeasePool
+ --restype javax.sql.DataSource \
+ --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource \
+ --property user=bankuser:password=bankpass:DatabaseName=bankease:ServerName=bankease-mysql:PortNumber=3306:useSSL=false:allowPublicKeyRetrieval=true \
+ bankeasePool
 
 create-jdbc-resource \
-  --connectionpoolid bankeasePool \
-  jdbc/bankeasePool
+ --connectionpoolid bankeasePool \
+ jdbc/bankeasePool
+
+ping-connection-pool bankeasePool
+
+list-jdbc-connection-pools
+list-jdbc-resources

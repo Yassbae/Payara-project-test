@@ -18,7 +18,8 @@
     </properties>
 
     <dependencies>
-        <!-- API Jakarta EE 10 (fournie par Payara Server) -->
+
+        <!-- Jakarta EE 10 (fournie par Payara 6) -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
@@ -26,7 +27,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Driver MySQL, même version que dans le Dockerfile -->
+        <!-- Driver MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -34,13 +35,14 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- PrimeFaces pour l'UI -->
+        <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>14.0.5</version>
             <classifier>jakarta</classifier>
         </dependency>
+
     </dependencies>
 
     <build>
